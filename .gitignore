@@ -1,0 +1,6 @@
+# 가상환경 및 임시 파일 무시 (필수!)
+.venv/
+venv/
+site/
+__pycache__/
+.DS_Store
