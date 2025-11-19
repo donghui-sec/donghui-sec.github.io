@@ -5,27 +5,35 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
-  language: ko             # 한국어 UI 기본 설정
-  features:
-    - navigation.tabs      # [핵심] 상단 탭 메뉴 (책/블로그 분리)
-    - navigation.sections  # 사이드바 섹션 구분
-    - navigation.top       # 맨 위로 가기 버튼
-    - toc.integrate        # 목차 통합
-    - search.suggest       # 검색어 자동완성
-    - search.highlight     # 검색 결과 강조
+  language: ko             # 한국어 UI
   palette:
-    - scheme: default      # 라이트 모드
-      primary: indigo
+    # [변경됨] WikiDocs 스타일의 핵심: 깔끔한 흰색 배경
+    - scheme: default
+      primary: white       # 상단 헤더를 흰색으로
       accent: indigo
       toggle:
         icon: material/weather-night
         name: 다크 모드로 전환
-    - scheme: slate        # 다크 모드
+    - scheme: slate
       primary: black
       accent: indigo
       toggle:
         icon: material/weather-sunny
         name: 라이트 모드로 전환
+
+  features:
+    # [제거됨] navigation.tabs (상단 탭 메뉴 삭제)
+    
+    # [추가됨] WikiDocs 스타일 핵심 기능
+    - navigation.expand    # 왼쪽 메뉴를 기본적으로 펼쳐서 보여줌
+    - toc.integrate        # 오른쪽의 소목차(h2, h3)를 왼쪽 사이드바에 통합
+    
+    - navigation.indexes   # 폴더 클릭 시 해당 챕터 첫 페이지로 이동
+    - navigation.instant   # 페이지 이동 속도 향상
+    - navigation.sections  # 대단원 섹션 구분
+    - navigation.top       # 맨 위로 가기 버튼
+    - search.suggest       # 검색어 자동완성
+    - search.highlight     # 검색 결과 강조
 
 # 필수 플러그인 (블로그, 다국어)
 plugins:
@@ -43,7 +51,7 @@ plugins:
           name: English
           link: /en/
 
-# 마크다운 확장기능 (수식, 코드 하이라이팅)
+# 마크다운 확장기능
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
@@ -54,7 +62,12 @@ markdown_extensions:
       generic: true
   - admonition             # 팁 박스 지원
 
-# 상단 메뉴 구조
+# 수학 수식 스크립트
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# 메뉴 구조 (상단 탭이 없으므로, 이 구조 그대로 왼쪽에 일렬로 나옵니다)
 nav:
   - Home: index.md
   - Security(Book): security/
