@@ -70,7 +70,7 @@ extra_javascript:
 # 메뉴 구조 (상단 탭이 없으므로, 이 구조 그대로 왼쪽에 일렬로 나옵니다)
 nav:
   - Home: index.md
-  - Security(Book): security/
+  - Security(Book): Resource/
   - CodingDocu(Book): codingdocu/
   - Blog: blog/
 
