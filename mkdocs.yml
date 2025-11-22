@@ -5,7 +5,6 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
-  language: ko             # 한국어 UI
   palette:
     # [변경됨] WikiDocs 스타일의 핵심: 깔끔한 흰색 배경
     - scheme: default
@@ -29,7 +28,7 @@ theme:
     - toc.integrate        # 오른쪽의 소목차(h2, h3)를 왼쪽 사이드바에 통합
     
     - navigation.indexes   # 폴더 클릭 시 해당 챕터 첫 페이지로 이동
-    - navigation.instant   # 페이지 이동 속도 향상
+    # - navigation.instant   # 페이지 이동 속도 향상
     - navigation.sections  # 대단원 섹션 구분
     - navigation.top       # 맨 위로 가기 버튼
     - search.suggest       # 검색어 자동완성
@@ -38,18 +37,19 @@ theme:
 # 필수 플러그인 (블로그, 다국어)
 plugins:
   - search
-  - blog:
-      blog_dir: blog/posts
   - i18n:
-      docs_structure: suffix
+      docs_structure: suffix  # 중요: 파일명 끝으로 구분하겠다는 뜻
+      fallback_to_default: true
+      reconfigure_material: true
       languages:
         - locale: ko
           name: 한국어
           default: true
-          link: /
+          build: true
         - locale: en
           name: English
-          link: /en/
+          default: false
+          build: true
 
 # 마크다운 확장기능
 markdown_extensions:
@@ -61,6 +61,13 @@ markdown_extensions:
   - pymdownx.arithmatex:   # 수학 수식($$) 지원
       generic: true
   - admonition             # 팁 박스 지원
+  # [추가] 목차(TOC) 설정
+  - toc:
+      permalink: true
+      toc_depth: 3    # 제목3(###)까지 메뉴에 표시하겠다는 뜻 (기본값은 보통 2)
+      
+  - pymdownx.highlight:
+      anchor_linenums: true
 
 # 수학 수식 스크립트
 extra_javascript:
@@ -68,11 +75,6 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 # 메뉴 구조 (상단 탭이 없으므로, 이 구조 그대로 왼쪽에 일렬로 나옵니다)
-nav:
-  - Home: index.md
-  - Security(Book): Resource/
-  - CodingDocu(Book): codingdocu/
-  - Blog: blog/
 
 # 우측 상단 언어 변경 버튼
 extra:
